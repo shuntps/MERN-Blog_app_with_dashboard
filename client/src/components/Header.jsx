@@ -22,7 +22,7 @@ export default function Header() {
             <span className="px-2 py-1 bg-gradient-to-r from-slate-500 to-slate-800 rounded-lg text-white">
                MyApp
             </span>
-            Blog
+            Dev
          </Link>
          <form>
             <TextInput
