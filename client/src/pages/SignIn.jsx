@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 
 import {
@@ -8,6 +9,8 @@ import {
   signInSuccess,
   signInFailure,
 } from '../redux/user/userSlice';
+
+import OAuth from '../components/OAuth';
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -54,7 +57,7 @@ export default function SignIn() {
 
   return (
     <div className='min-h-screen mt-20'>
-      <div className='flex flex-col p-5 max-w-4xl mx-auto md:flex-row md:items-center gap-10'>
+      <div className='flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5'>
         {/* Left */}
         <div className='flex-1'>
           <Link to='/' className='font-bold dark:text-white text-4xl'>
@@ -63,6 +66,7 @@ export default function SignIn() {
             </span>
             Dev
           </Link>
+
           <p className='text-sm mt-5'>
             This project is under development. You can still sign in with your
             email or Google account to follow its progress. Thank you.
@@ -74,6 +78,7 @@ export default function SignIn() {
           <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
             <div>
               <Label value='Your email' />
+
               <TextInput
                 type='email'
                 placeholder='Email'
@@ -81,8 +86,10 @@ export default function SignIn() {
                 onChange={handleChange}
               />
             </div>
+
             <div>
               <Label value='Your password' />
+
               <TextInput
                 type='password'
                 placeholder='******'
@@ -90,6 +97,7 @@ export default function SignIn() {
                 onChange={handleChange}
               />
             </div>
+
             <Button
               type='submit'
               className='text-white bg-gradient-to-r from-slate-800 to-slate-500 hover:bg-gradient-to-r hover:from-slate-500 hover:to-slate-800 shadow hover:shadow-lg'
@@ -104,13 +112,18 @@ export default function SignIn() {
                 'Sign In'
               )}
             </Button>
+
+            <OAuth />
           </form>
+
           <div className='text-center text-sm mt-3'>
             <span>Don&apos;t have an account?</span>
+
             <Link to='/sign-up' className='text-blue-900 p-2 hover:underline'>
               Sign Up
             </Link>
           </div>
+
           {errorMessage && (
             <Alert className='mt-5' color='failure'>
               {errorMessage}

@@ -1,6 +1,9 @@
-import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
+
+import OAuth from '../components/OAuth';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -56,6 +59,7 @@ export default function SignUp() {
             </span>
             Dev
           </Link>
+
           <p className='text-sm mt-5'>
             This project is under development. You can still sign up with your
             email or Google account to follow its progress. Thank you.
@@ -74,6 +78,7 @@ export default function SignUp() {
                 onChange={handleChange}
               />
             </div>
+
             <div>
               <Label value='Your email' />
               <TextInput
@@ -83,6 +88,7 @@ export default function SignUp() {
                 onChange={handleChange}
               />
             </div>
+
             <div>
               <Label value='Your password' />
               <TextInput
@@ -92,6 +98,7 @@ export default function SignUp() {
                 onChange={handleChange}
               />
             </div>
+
             <Button
               type='submit'
               className='text-white bg-gradient-to-r from-slate-800 to-slate-500 hover:bg-gradient-to-r hover:from-slate-500 hover:to-slate-800 shadow hover:shadow-lg'
@@ -106,13 +113,18 @@ export default function SignUp() {
                 'Sign Up'
               )}
             </Button>
+
+            <OAuth />
           </form>
+
           <div className='text-center text-sm mt-3'>
             <span>Already have an account?</span>
+
             <Link to='/sign-in' className='text-blue-900 p-2 hover:underline'>
               Sign In
             </Link>
           </div>
+
           {errorMessage && (
             <Alert className='mt-5' color='failure'>
               {errorMessage}
