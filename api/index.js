@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename);
 // Middleware
 app.use(express.json());
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/files', express.static(path.join(__dirname, 'files')));
 
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 5000;

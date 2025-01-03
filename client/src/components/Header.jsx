@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Avatar,
@@ -13,11 +13,15 @@ import {
 
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { FaMoon } from 'react-icons/fa';
+import { FaMoon, FaSun } from 'react-icons/fa';
+
+import { toggleTheme } from '../redux/theme/themeSlice';
 
 export default function Header() {
   const path = useLocation().pathname;
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state.theme);
 
   return (
     <Navbar className='border-b-2 shadow-sm'>
@@ -45,8 +49,13 @@ export default function Header() {
       </Button>
 
       <div className='flex gap-2 md:order-2'>
-        <Button className='w-12 h-10 hidden sm:inline' color='gray' pill>
-          <FaMoon />
+        <Button
+          className='w-12 h-10 hidden sm:inline'
+          color='gray'
+          pill
+          onClick={() => dispatch(toggleTheme())}
+        >
+          {theme === 'light' ? <FaSun /> : <FaMoon />}
         </Button>
 
         {currentUser ? (
@@ -56,9 +65,17 @@ export default function Header() {
             label={
               <Avatar
                 alt='user'
-                img={`${import.meta.env.VITE_BACKEND_URL}${
-                  currentUser.profilePicture
-                }`}
+                {...(currentUser.profilePicture.endsWith('.svg')
+                  ? {
+                      svg: `${import.meta.env.VITE_BACKEND_URL}${
+                        currentUser.profilePicture
+                      }`,
+                    }
+                  : {
+                      img: `${import.meta.env.VITE_BACKEND_URL}${
+                        currentUser.profilePicture
+                      }`,
+                    })}
                 rounded
               />
             }

@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema(
     },
     profilePicture: {
       type: String,
-      default: '/public/avatars/avatar.jpg',
+      default: '/files/avatars/default_avatar.svg',
     },
   },
   {

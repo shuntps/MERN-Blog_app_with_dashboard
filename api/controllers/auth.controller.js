@@ -116,7 +116,7 @@ export const google = async (req, res, next) => {
       const fileName = `${username}.jpg`;
 
       const rootPath = process.cwd();
-      const publicPath = path.join(rootPath, 'public', 'avatars', 'google');
+      const publicPath = path.join(rootPath, 'files', 'avatars', 'google');
 
       if (!fs.existsSync(publicPath)) {
         fs.mkdirSync(publicPath, { recursive: true });
@@ -143,7 +143,7 @@ export const google = async (req, res, next) => {
         username,
         email,
         password: hashedPassword,
-        profilePicture: `/public/avatars/google/${fileName}`,
+        profilePicture: `/files/avatars/google/${fileName}`,
       });
 
       await newUser.save();
